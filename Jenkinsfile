@@ -8,7 +8,7 @@ pipeline {
         stage('vcs') {
             steps {
                 git url: 'https://github.com/Vishnuchowki/spring-petclinic.git',
-                    branch: 'develop'
+                    branch: 'sprint_1'
             }
         }
         stage('package') {
@@ -17,6 +17,13 @@ pipeline {
             }
             steps {
                 sh "./mvnw package"
+            }
+        }
+        stage('post build') {
+            steps {
+                archiveArtifacts artifacts: '**/target/spring*.jar',
+                                 onlyIfSuccessful: true
+                junit testResults: '**/surefire-reports/TEST-*.xml'
             }
         }
         
