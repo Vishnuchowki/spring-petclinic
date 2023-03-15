@@ -19,12 +19,6 @@ pipeline {
                 sh "./mvnw package"
             }
         }
-        stage('post build') {
-            steps {
-                archiveArtifacts artifacts: '**/target/spring*.jar',
-                                 onlyIfSuccessful: true
-                junit testResults: '**/surefire-reports/TEST-*.xml'
-            }
-        }
+        
     }
 }
