@@ -17,7 +17,7 @@ pipeline {
             }
             steps {
                 sh "./mvnw package"
-                sh "whoami"
+                sh "whoami && pwd"
             }
         }
         stage('post build') {
